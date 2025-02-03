@@ -116,7 +116,19 @@ void RegisterAllStrippedInternalCalls()
 
 	//End Registrations for type : UnityEngine.CameraRaycastHelper
 
+	//Start Registrations for type : UnityEngine.ColorUtility
+
+		//System.Boolean UnityEngine.ColorUtility::DoTryParseHtmlColor(System.String,UnityEngine.Color32&)
+		void Register_UnityEngine_ColorUtility_DoTryParseHtmlColor();
+		Register_UnityEngine_ColorUtility_DoTryParseHtmlColor();
+
+	//End Registrations for type : UnityEngine.ColorUtility
+
 	//Start Registrations for type : UnityEngine.Component
+
+		//UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+		void Register_UnityEngine_Component_get_gameObject();
+		Register_UnityEngine_Component_get_gameObject();
 
 		//UnityEngine.Transform UnityEngine.Component::get_transform()
 		void Register_UnityEngine_Component_get_transform();
@@ -262,6 +274,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_GameObject_SendMessage();
 		Register_UnityEngine_GameObject_SendMessage();
 
+		//UnityEngine.Component UnityEngine.GameObject::GetComponent(System.Type)
+		void Register_UnityEngine_GameObject_GetComponent();
+		Register_UnityEngine_GameObject_GetComponent();
+
 		//UnityEngine.Component UnityEngine.GameObject::Internal_AddComponentWithType(System.Type)
 		void Register_UnityEngine_GameObject_Internal_AddComponentWithType();
 		Register_UnityEngine_GameObject_Internal_AddComponentWithType();
@@ -374,6 +390,10 @@ void RegisterAllStrippedInternalCalls()
 
 	//Start Registrations for type : UnityEngine.Material
 
+		//System.Int32 UnityEngine.Material::GetFirstPropertyNameIdByAttribute(UnityEngine.Rendering.ShaderPropertyFlags)
+		void Register_UnityEngine_Material_GetFirstPropertyNameIdByAttribute();
+		Register_UnityEngine_Material_GetFirstPropertyNameIdByAttribute();
+
 		//System.Void UnityEngine.Material::CreateWithMaterial(UnityEngine.Material,UnityEngine.Material)
 		void Register_UnityEngine_Material_CreateWithMaterial();
 		Register_UnityEngine_Material_CreateWithMaterial();
@@ -385,6 +405,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.Material::CreateWithString(UnityEngine.Material)
 		void Register_UnityEngine_Material_CreateWithString();
 		Register_UnityEngine_Material_CreateWithString();
+
+		//System.Void UnityEngine.Material::SetColorImpl_Injected(System.Int32,UnityEngine.Color&)
+		void Register_UnityEngine_Material_SetColorImpl_Injected();
+		Register_UnityEngine_Material_SetColorImpl_Injected();
 
 	//End Registrations for type : UnityEngine.Material
 
@@ -616,6 +640,14 @@ void RegisterAllStrippedInternalCalls()
 
 	//End Registrations for type : UnityEngine.Quaternion
 
+	//Start Registrations for type : UnityEngine.Renderer
+
+		//UnityEngine.Material UnityEngine.Renderer::GetMaterial()
+		void Register_UnityEngine_Renderer_GetMaterial();
+		Register_UnityEngine_Renderer_GetMaterial();
+
+	//End Registrations for type : UnityEngine.Renderer
+
 	//Start Registrations for type : UnityEngine.Rendering.GraphicsSettings
 
 		//System.Boolean UnityEngine.Rendering.GraphicsSettings::get_lightsUseLinearIntensity()
@@ -697,6 +729,10 @@ void RegisterAllStrippedInternalCalls()
 	//End Registrations for type : UnityEngine.ScriptableObject
 
 	//Start Registrations for type : UnityEngine.Shader
+
+		//System.Int32 UnityEngine.Shader::PropertyToID(System.String)
+		void Register_UnityEngine_Shader_PropertyToID();
+		Register_UnityEngine_Shader_PropertyToID();
 
 		//System.Int32 UnityEngine.Shader::TagToID(System.String)
 		void Register_UnityEngine_Shader_TagToID();

@@ -4,41 +4,84 @@ After working with Unity, I've quickly ran into painful work when working on the
 
 This is a proof of concept of including a Unity scene inside of a Webview, and ensuring both can properly communicate.
 
+This could be modified to also work for mobile apps using Unity iOS/Android builds instead of WebGL. 
 
 
-## Getting Started
+# Unity-React Integration POC Summary
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Overview
+This POC demonstrates bidirectional communication between a Unity WebGL game and a React application. The Unity side contains a simple interactive cube that can be clicked to rotate, and the React side displays game state and can change the cube's color.
 
-First, run the development server:
+## Key Takeaways
+- Bidirectional communication is possible
+- Unity WebGL works well with React
+- TypeScript ensures type safety
+- Event-based communication is reliable
+- Good foundation for more complex features
 
+## Project Structure
+
+### Unity Project Setup
+1. Create a new Unity project
+
+2. Create a basic scene with:
+   - A cube in the center
+   - Camera positioned to view the cube
+
+3. Required scripts:
+TestData.cs - Shared data structure
+
+4. Scene setup:
+   - Create an empty GameObject named "WebViewBridge"
+   - Attach WebViewBridge script to it
+   - Attach TestCube script to the cube
+   - Reference WebViewBridge in TestCube's inspector
+
+5. Create JavaScript plugin:
+Assets/Plugins/WebGL/unityBridge.jslib
+
+6. Build settings:
+   - Switch platform to WebGL
+   - Set Compression Format to "Disabled"
+   - Build to public/unity/Build/ in React project
+
+### React Project Setup
+1. Create new Next.js project:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx create-next-app@latest unity-react-poc
+cd unity-react-poc
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install required components:
+```bash
+npx shadcn@latest init
+npx shadcn@latest add card
+npx shadcn@latest add button
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Required components:
+src/components/UnityLoader.tsx
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Communication Flow
+1. Unity to React:
+   - Click cube → TestCube.OnMouseDown
+   - WebViewBridge.SendTestData → jslib SendDataToReact
+   - window.unityDataCallback → CustomEvent
+   - React TestDisplay updates state
 
-## Learn More
+2. React to Unity:
+   - Click button → handleColorChange
+   - window.sendToUnity → Unity SendMessage
+   - TestCube.SetRandomColor updates material
 
-To learn more about Next.js, take a look at the following resources:
+## Running the POC
+1. Build Unity project to `public/unity/Build/`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Start Next.js development server:
+```bash
+npm run dev
+```
+3. Open http://localhost:3000
+4. Test:
+   - Click cube to see it rotate and update stats
+   - Click "Change Cube Color" to randomize cube color
